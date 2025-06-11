@@ -146,27 +146,44 @@ console.log(data)
           {/* FORM */}
           <form onSubmit={handleSubmit} className="card bg-base-100 shadow-md p-4 mb-6 space-y-4">
             <div className="form-control">
-              <label className="label">Question</label>
+              <label className="label p-2">Question</label>
               <textarea name="question" className="textarea textarea-bordered" value={form.question} onChange={handleChange} />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="form-control">
                 <label className="label">Theme</label>
-                <input name="theme" className="input input-bordered" value={form.theme} onChange={handleChange} />
+                <select name="theme" className="select select-bordered" value={form.theme} onChange={handleChange}>
+                  <option value="">Select Theme</option>
+                  {themes.map((theme) => (
+                    <option key={theme} value={theme}>{theme}</option>
+                  ))}
+                </select>
               </div>
               <div className="form-control">
-                <label className="label">Level</label>
-                <input name="level" className="input input-bordered" value={form.level} onChange={handleChange} />
+                <label className="label p-2">Level</label>
+                <select name="level" className="select select-bordered" value={form.level} onChange={handleChange}>
+                  <option value="Hot">Hot</option>
+                  <option value="Mild">Mild</option>
+                  <option value="Spicy">Spicy</option>
+                </select>
               </div>
               <div className="form-control">
-                <label className="label">Type</label>
-                <input name="type" className="input input-bordered" value={form.type} onChange={handleChange} />
+                <label className="label p-2">Type</label>
+                <select name="type" className="select select-bordered" value={form.type} onChange={handleChange}>
+                  <option value="">Select Type</option>
+                  <option value="truth">Truth</option>
+                  <option value="dare">Dare</option>
+                  </select>
               </div>
-              <div className="form-control flex-row items-center gap-2 mt-6">
-                <label className="label">Requires Partner</label>
+              <div className="form-control flex-row items-center gap-2 mt-6 ">
+                <label className="label pr-3">Requires Partner</label>
                 <input type="checkbox" className="checkbox" name="requirespartner" checked={form.requirespartner} onChange={handleChange} />
               </div>
+              {form.type=="dare" && (              <div className="form-control flex-row items-center gap-2 mt-6">
+                <label className="label">Timer</label>
+                <input name="timer" className="input input-bordered" value={form.timer} onChange={handleChange} />
+              </div>)}
             </div>
 
             <button className="btn btn-primary w-full mt-2" disabled={loading}>
@@ -174,14 +191,17 @@ console.log(data)
             </button>
           </form>
 
-          {/* QUESTION LIST */}
-          <div className="space-y-4">
+
+        </div>
+                  {/* QUESTION LIST */}
+          <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
             {questions.length === 0 && <p>No questions found.</p>}
             {questions.map((q) => (
-              <div key={q.id} className="card bg-base-100 shadow p-4">
+              <div key={q.id} className={`card bg-base-100 shadow p-4`+ (q.type === "dare" ? " border border-warning" : "")}>
                 <h3 className="font-semibold text-lg">{q.question || "No Question Text"}</h3>
                 <p><strong>Theme:</strong> {q.theme} | <strong>Level:</strong> {q.level} | <strong>Type:</strong> {q.type}</p>
                 <p><strong>Partner Required:</strong> {q.requirespartner ? "Yes" : "No"}</p>
+                {q.type=="dare" && q.timer && <p><strong>Countdown Timer:</strong> {q.timer} seconds</p>}
                 <div className="mt-2 flex gap-2">
                   <button className="btn btn-sm btn-warning" onClick={() => handleEdit(q)}>Edit</button>
                   <button className="btn btn-sm btn-error" onClick={() => handleDelete(q.id)}>Delete</button>
@@ -189,7 +209,6 @@ console.log(data)
               </div>
             ))}
           </div>
-        </div>
       </main>
     </div>
   );
