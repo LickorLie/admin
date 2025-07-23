@@ -166,6 +166,9 @@ console.log(data)
                   <option value="Hot">Hot</option>
                   <option value="Mild">Mild</option>
                   <option value="Spicy">Spicy</option>
+                  <option value="Sweet">Sweet</option>
+                  <option value="Sexy">Sexy</option>
+                  <option value="Wet&Wild">Wet&Wild</option>
                 </select>
               </div>
               <div className="form-control">
