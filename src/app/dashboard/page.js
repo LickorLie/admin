@@ -1,4 +1,5 @@
 "use client";
+import Sidebar, { MobileNav } from "../components/Sidebar";
 
 import { useEffect, useState } from "react";
 import supabase from "../utils/supabase";
@@ -11,7 +12,7 @@ export default function QuestionDashboard() {
     id: null,
     question: "",
     theme: "",
-    level: "",
+    level: "Sweet",
     type: "",
     requirespartner: false,
   });
@@ -80,7 +81,7 @@ export default function QuestionDashboard() {
       await supabase.from("questions").insert([values]);
     }
 
-    setForm({ id: null, question: "", theme: "", level: "", type: "", requirespartner: false });
+    setForm({ id: null, question: "", theme: "", level: "Sweet", type: "", requirespartner: false });
     await fetchQuestions(selectedTheme);
     await fetchThemes();
     setLoading(false);
@@ -110,36 +111,11 @@ console.log(data)
   return (
     <div className="min-h-screen bg-base-200 flex">
       {/* SIDEBAR */}
-      <aside className="w-64 bg-base-100 shadow-lg p-4 hidden md:block">
-        <h3 className="font-bold text-lg mb-4">🎨 Filter by Theme</h3>
-        <ul className="menu">
-          <li>
-            <button
-              className={`btn btn-ghost btn-sm text-left ${selectedTheme === null ? "font-bold" : ""}`}
-              onClick={() => handleThemeFilter(null)}
-            >
-              All Themes
-            </button>
-          </li>
-          {themes.map((theme) => (
-            <li key={theme}>
-              <button
-                className={`btn btn-ghost btn-sm text-left ${selectedTheme === theme ? "font-bold" : ""}`}
-                onClick={() => handleThemeFilter(theme)}
-              >
-                {theme}
-              </button>
-            </li>
-          ))}
-            <li><a href="/dashboard/sponsors">Manage Sponsors ↗ </a></li>
-                        <li><a href="/dashboard/contact">Contact ↗ </a></li>
-                        <li><a onClick={logout}>Logout ←</a></li>
-
-        </ul>
-      </aside>
+      <Sidebar />
 
       {/* MAIN */}
       <main className="flex-1 p-6">
+        <MobileNav />
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl font-bold mb-4">📚 Manage Questions</h2>
 
@@ -163,12 +139,10 @@ console.log(data)
               <div className="form-control">
                 <label className="label p-2">Level</label>
                 <select name="level" className="select select-bordered" value={form.level} onChange={handleChange}>
-                  <option value="Hot">Hot</option>
-                  <option value="Mild">Mild</option>
-                  <option value="Spicy">Spicy</option>
-                  <option value="Sweet">Sweet</option>
-                  <option value="Sexy">Sexy</option>
-                  <option value="WetnWild">Wet & Wild</option>
+                  <option value="Sweet">Sweet 🍒</option>
+                  <option value="Sexy">Sexy 🍑</option>
+                  <option value="Spicy">Spicy 🥵</option>
+                  <option value="WetnWild">Wet & Wild 💦</option>
                 </select>
               </div>
               <div className="form-control">

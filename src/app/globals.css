@@ -1,5 +1,30 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "lickorlie";
+  default: true;
+  color-scheme: light;
+  --color-base-100: #FFFFFF;
+  --color-base-200: #FBF6F1;
+  --color-base-300: #E8DDD3;
+  --color-base-content: #1A1A1A;
+  --color-primary: #C1121F;
+  --color-primary-content: #FFFFFF;
+  --color-secondary: #F6E4E1;
+  --color-secondary-content: #1A1A1A;
+  --color-accent: #6B5E55;
+  --color-accent-content: #FFFFFF;
+  --color-neutral: #1A1A1A;
+  --color-neutral-content: #FBF6F1;
+  --color-success: #2F6B3B;
+  --color-success-content: #FFFFFF;
+  --color-error: #C1121F;
+  --color-error-content: #FFFFFF;
+  --radius-box: 20px;
+  --radius-field: 12px;
+  --radius-selector: 12px;
+}
+.font-serif { font-family: var(--font-cormorant), Georgia, serif; }
 
 :root {
   --background: #ffffff;
@@ -13,12 +38,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+
 
 body {
   background: var(--background);
