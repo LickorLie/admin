@@ -1,4 +1,5 @@
 "use client";
+import Sidebar, { MobileNav } from "../../components/Sidebar";
 
 import { useEffect, useState } from "react";
 import supabase from "../../utils/supabase"; // Adjust the import path as necessary
@@ -40,14 +41,7 @@ export default function ContactViewer() {
         <div className="min-h-screen flex bg-base-200">
 
           {/* Sidebar */}
-      <aside className="w-64 bg-base-100 p-4 shadow hidden md:block">
-        <h2 className="text-2xl font-bold mb-6">📊 Dashboard</h2>
-        <ul className="menu space-y-2">
-          <li><a href="/dashboard">🏠 Questions ↗</a></li>
-          <li><a href="sponsors">🎁 Sponsors ↗</a></li>
-          <li><a className="active">📬 Contact</a></li>
-        </ul>
-      </aside>
+      <Sidebar />
 
 
     <div className="min-h-screen bg-base-200 p-6">
