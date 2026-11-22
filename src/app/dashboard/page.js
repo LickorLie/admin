@@ -12,7 +12,7 @@ export default function QuestionDashboard() {
     id: null,
     question: "",
     theme: "",
-    level: "",
+    level: "Sweet",
     type: "",
     requirespartner: false,
   });
@@ -81,7 +81,7 @@ export default function QuestionDashboard() {
       await supabase.from("questions").insert([values]);
     }
 
-    setForm({ id: null, question: "", theme: "", level: "", type: "", requirespartner: false });
+    setForm({ id: null, question: "", theme: "", level: "Sweet", type: "", requirespartner: false });
     await fetchQuestions(selectedTheme);
     await fetchThemes();
     setLoading(false);
@@ -139,11 +139,10 @@ console.log(data)
               <div className="form-control">
                 <label className="label p-2">Level</label>
                 <select name="level" className="select select-bordered" value={form.level} onChange={handleChange}>
-                  <option value="Mild">Mild</option>
-                  <option value="Spicy">Spicy</option>
-                  <option value="Sweet">Sweet</option>
-                  <option value="Sexy">Sexy</option>
-                  <option value="WetnWild">Wet & Wild</option>
+                  <option value="Sweet">Sweet 🍒</option>
+                  <option value="Sexy">Sexy 🍑</option>
+                  <option value="Spicy">Spicy 🥵</option>
+                  <option value="WetnWild">Wet & Wild 💦</option>
                 </select>
               </div>
               <div className="form-control">
